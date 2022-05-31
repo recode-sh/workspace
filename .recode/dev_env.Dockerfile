@@ -39,7 +39,12 @@ ENV PATH=$PATH:/usr/local/go/bin:$HOME/go/bin
 RUN set -euo pipefail \
   && cd /tmp \
   && LATEST_PB_VERSION=$(curl --fail --silent --show-error --location "https://api.github.com/repos/protocolbuffers/protobuf/releases/latest" | grep --only-matching --perl-regexp '(?<="tag_name": ").+(?=")') \
-  && curl --fail --silent --show-error --location "https://github.com/protocolbuffers/protobuf/releases/download/${LATEST_PB_VERSION}/protoc-${LATEST_PB_VERSION:1}-$(uname --kernel-name)-$(uname --machine).zip" --output pb.zip \
+  && if [[ "$(uname --machine)" = "aarch64" ]] ; then \
+        ARCH_TO_USE="aarch_64" ; \
+     else \
+        ARCH_TO_USE="x86_64" ; \
+     fi \
+  && curl --fail --silent --show-error --location "https://github.com/protocolbuffers/protobuf/releases/download/${LATEST_PB_VERSION}/protoc-${LATEST_PB_VERSION:1}-$(uname --kernel-name)-${ARCH_TO_USE}.zip" --output pb.zip \
   && sudo unzip -qq pb.zip -d /usr/local/pb \
   && rm pb.zip \
   && /usr/local/go/bin/go install google.golang.org/protobuf/cmd/protoc-gen-go@latest \
