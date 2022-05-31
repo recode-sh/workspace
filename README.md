@@ -4,7 +4,7 @@ This repository contains an example of multi-repositories development environmen
 
 **As a best pratice, it is recommended to create a new repository like this one to store the Recode configuration of a multi-repositories development environment**.
 
-See the [Recode CLI documentation](https://github.com/recode-sh/cli#development-environments-configuration) to learn more about the Recode configuration format.
+(See the [Recode CLI documentation](https://github.com/recode-sh/cli#development-environments-configuration) to learn more about the Recode configuration format).
 
 ## Table of contents
 - [The future](#the-future)
