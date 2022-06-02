@@ -14,7 +14,7 @@ ARG RECODE_INSTANCE_OS
 # eg: amd64 or arm64
 ARG RECODE_INSTANCE_ARCH
 
-ARG GO_VERSION=1.18.2
+ARG GO_VERSION=1.18.3
 
 # Install Go and dev dependencies
 RUN set -euo pipefail \
